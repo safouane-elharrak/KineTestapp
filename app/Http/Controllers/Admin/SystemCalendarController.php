@@ -2,39 +2,28 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Appointment;
 use App\Http\Controllers\Controller;
-use Carbon\Carbon;
 
 class SystemCalendarController extends Controller
 {
-    public $sources = [
-        [
-            'model'      => '\App\Models\Appointment',
-            'date_field' => 'appointment_date',
-            'field'      => 'appointment_type',
-            'prefix'     => '',
-            'suffix'     => '',
-            'route'      => 'admin.appointments.edit',
-        ],
-    ];
 
     public function index()
     {
         $events = [];
-        foreach ($this->sources as $source) {
-            foreach ($source['model']::all() as $model) {
-                $crudFieldValue = $model->getAttributes()[$source['date_field']];
 
-                if (!$crudFieldValue) {
-                    continue;
-                }
+        $appointments = Appointment::with('patient')->get();
 
-                $events[] = [
-                    'title' => trim($source['prefix'] . ' ' . $model->{$source['field']} . ' ' . $source['suffix']),
-                    'start' => $crudFieldValue,
-                    'url'   => route($source['route'], $model->id),
-                ];
+        foreach ($appointments as $appointment) {
+            if (!$appointment->start_time) {
+                continue;
             }
+
+            $events[] = [
+                'title' => $appointment->patient->patient_fname.' '. $appointment->patient->patient_lname .' ( '.$appointment->appointment_type.' )',
+                'start' => $appointment->start_time,
+                'url'   => route('admin.appointments.edit', $appointment->id),
+            ];
         }
 
         return view('admin.calendar.calendar', compact('events'));

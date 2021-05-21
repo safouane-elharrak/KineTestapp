@@ -28,6 +28,8 @@ class Appointment extends Model
 
     protected $dates = [
         'appointment_date',
+/** */       'start_time',
+        'finish_time', /** */
         'created_at',
         'updated_at',
         'deleted_at',
@@ -36,6 +38,8 @@ class Appointment extends Model
     protected $fillable = [
         'patient_id',
         'appointment_date',
+    /** */    'start_time',
+        'finish_time', /** */
         'appointment_time',
         'appointment_type',
         'appointment_status',
@@ -61,7 +65,15 @@ class Appointment extends Model
     {
         $this->attributes['appointment_date'] = $value ? Carbon::createFromFormat(config('panel.date_format'), $value)->format('Y-m-d') : null;
     }
-
+/** */     public function setStartTimeAttribute($value)
+    {
+        $this->attributes['start_time'] = $value ? Carbon::createFromFormat(config('panel.time_format'), $value)->format('H:i') : null;
+    } 
+    public function setFinishTimeAttribute($value)
+    {
+        $this->attributes['finish_time'] = $value ? Carbon::createFromFormat(config('panel.time_format'), $value)->format('H:i') : null;
+    }
+     /** */
     public function appointment_created_by()
     {
         return $this->belongsTo(User::class, 'appointment_created_by_id');

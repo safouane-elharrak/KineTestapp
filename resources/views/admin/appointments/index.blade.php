@@ -33,9 +33,12 @@
                     <th>
                         {{ trans('cruds.appointment.fields.appointment_date') }}
                     </th>
-                    <th>
-                        {{ trans('cruds.appointment.fields.appointment_time') }}
+<!---->                    <th>
+{{ trans('cruds.appointment.fields.start_time') }}
                     </th>
+                    <th>
+                        {{ trans('cruds.appointment.fields.finish_time') }}
+                    </th>  <!---->                    
                     <th>
                         {{ trans('cruds.appointment.fields.appointment_type') }}
                     </th>
@@ -62,6 +65,8 @@
                                 <option value="{{ $item->patient_fname }}">{{ $item->patient_fname }}</option>
                             @endforeach
                         </select>
+                    </td>
+                    <td>
                     </td>
                     <td>
                     </td>
@@ -147,7 +152,8 @@
 { data: 'patient_patient_fname', name: 'patient.patient_fname' },
 { data: 'patient.patient_lname', name: 'patient.patient_lname' },
 { data: 'appointment_date', name: 'appointment_date' },
-{ data: 'appointment_time', name: 'appointment_time' },
+/**/{ data: 'start_time', name: 'start_time' },
+{ data: 'finish_time', name: 'finish_time' }, /**/
 { data: 'appointment_type', name: 'appointment_type' },
 { data: 'appointment_status', name: 'appointment_status' },
 { data: 'appointment_note', name: 'appointment_note' },

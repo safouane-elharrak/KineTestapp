@@ -52,10 +52,13 @@ class AppointmentController extends Controller
             $table->editColumn('patient.patient_lname', function ($row) {
                 return $row->patient ? (is_string($row->patient) ? $row->patient : $row->patient->patient_lname) : '';
             });
+/** */             $table->editColumn('start_time', function ($row) {
+    return $row->start_time ? $row->start_time : '';
+});              $table->editColumn('finish_time', function ($row) {
+    return $row->finish_time ? $row->finish_time : '';
+});
+/** */
 
-            $table->editColumn('appointment_time', function ($row) {
-                return $row->appointment_time ? $row->appointment_time : '';
-            });
             $table->editColumn('appointment_type', function ($row) {
                 return $row->appointment_type ? Appointment::APPOINTMENT_TYPE_SELECT[$row->appointment_type] : '';
             });

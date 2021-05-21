@@ -39,14 +39,23 @@
                             {{ $appointment->appointment_date }}
                         </td>
                     </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.appointment.fields.appointment_time') }}
+    <!---->                     <tr>
+    <th>
+                            {{ trans('cruds.appointment.fields.start_time') }}
                         </th>
                         <td>
-                            {{ $appointment->appointment_time }}
+                            {{ $appointment->start_time }}
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.appointment.fields.finish_time') }}
+                        </th>
+                        <td>
+                            {{ $appointment->finish_time }}
+                        </td>
+                    </tr> <!---->
+
                     <tr>
                         <th>
                             {{ trans('cruds.appointment.fields.appointment_type') }}

@@ -34,16 +34,31 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.appointment.fields.appointment_date_helper') }}</span>
             </div>
-            <div class="form-group">
-                <label for="appointment_time">{{ trans('cruds.appointment.fields.appointment_time') }}</label>
-                <input class="form-control timepicker {{ $errors->has('appointment_time') ? 'is-invalid' : '' }}" type="text" name="appointment_time" id="appointment_time" value="{{ old('appointment_time', $appointment->appointment_time) }}">
-                @if($errors->has('appointment_time'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('appointment_time') }}
-                    </div>
+<!---->            <div class="form-group {{ $errors->has('start_time') ? 'has-error' : '' }}">
+<label for="start_time">{{ trans('cruds.appointment.fields.start_time') }}*</label>
+                <input type="text" id="start_time" name="start_time" class="form-control datetime" value="{{ old('start_time', isset($appointment) ? $appointment->start_time : '') }}" required>
+                @if($errors->has('start_time'))
+                    <em class="invalid-feedback">
+                        {{ $errors->first('start_time') }}
+                    </em>
                 @endif
-                <span class="help-block">{{ trans('cruds.appointment.fields.appointment_time_helper') }}</span>
+                <p class="helper-block">
+                    {{ trans('cruds.appointment.fields.start_time_helper') }}
+                </p>
             </div>
+            <div class="form-group {{ $errors->has('finish_time') ? 'has-error' : '' }}">
+                <label for="finish_time">{{ trans('cruds.appointment.fields.finish_time') }}*</label>
+                <input type="text" id="finish_time" name="finish_time" class="form-control datetime" value="{{ old('finish_time', isset($appointment) ? $appointment->finish_time : '') }}" required>
+                @if($errors->has('finish_time'))
+                    <em class="invalid-feedback">
+                        {{ $errors->first('finish_time') }}
+                    </em>
+                @endif
+                <p class="helper-block">
+                    {{ trans('cruds.appointment.fields.finish_time_helper') }}
+                </p>
+            </div> <!---->
+
             <div class="form-group">
                 <label>{{ trans('cruds.appointment.fields.appointment_type') }}</label>
                 <select class="form-control {{ $errors->has('appointment_type') ? 'is-invalid' : '' }}" name="appointment_type" id="appointment_type">

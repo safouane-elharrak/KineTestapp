@@ -313,8 +313,10 @@ return [
             'patient_helper'                => ' ',
             'appointment_date'              => 'Date de rdv',
             'appointment_date_helper'       => ' ',
-            'appointment_time'              => 'Heure de rdv',
-            'appointment_time_helper'       => ' ',
+/**/            'start_time'         => 'heure de début',
+'start_time_helper'  => '',
+'finish_time'        => 'heure de fin',
+'finish_time_helper' => '', /**/
             'appointment_type'              => 'Type',
             'appointment_type_helper'       => ' ',
             'appointment_status'            => 'Statut',

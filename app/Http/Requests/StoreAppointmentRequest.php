@@ -25,10 +25,15 @@ class StoreAppointmentRequest extends FormRequest
                 'required',
                 'date_format:' . config('panel.date_format'),
             ],
-            'appointment_time' => [
-                'date_format:' . config('panel.time_format'),
-                'nullable',
-            ],
+/** */             'start_time' => [
+    'date_format:' . config('panel.time_format'),
+    'nullable',
+],
+'finish_time' => [
+    'date_format:' . config('panel.time_format'),
+    'nullable',
+],/** */
+
             'appointment_note' => [
                 'string',
                 'nullable',

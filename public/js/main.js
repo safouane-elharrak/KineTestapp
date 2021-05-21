@@ -17,9 +17,10 @@ $(document).ready(function () {
   })
 
   $('.datetime').datetimepicker({
-    format: 'YYYY-MM-DD HH:mm:ss',
+    format: ' HH:mm',
     locale: 'en',
     sideBySide: true,
+    stepping :30, /**/
     icons: {
       up: 'fas fa-chevron-up',
       down: 'fas fa-chevron-down',

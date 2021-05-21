@@ -28,6 +28,7 @@
             $('#calendar').fullCalendar({
                 // put your options and callbacks here
                 events: events,
+              //  defaultView: 'afendaWeek' 
 
 
             })
