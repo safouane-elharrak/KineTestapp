@@ -1,0 +1,58 @@
+<?php
+
+namespace App\Models;
+
+use \DateTimeInterface;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+
+class SessionLine extends Model implements HasMedia
+{
+    use SoftDeletes;
+    use InteractsWithMedia;
+    use HasFactory;
+
+    public $table = 'session_lines';
+
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
+
+    protected $fillable = [
+        'session_id',
+        'service_id',
+        'detail',
+        'quantity',
+        'price',
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
+
+    public function registerMediaConversions(Media $media = null): void
+    {
+        $this->addMediaConversion('thumb')->fit('crop', 50, 50);
+        $this->addMediaConversion('preview')->fit('crop', 120, 120);
+    }
+
+    public function session()
+    {
+        return $this->belongsTo(Session::class, 'session_id');
+    }
+
+    public function service()
+    {
+        return $this->belongsTo(Service::class, 'service_id');
+    }
+
+    protected function serializeDate(DateTimeInterface $date)
+    {
+        return $date->format('Y-m-d H:i:s');
+    }
+}
